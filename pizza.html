@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Order Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-check-label {
+            margin-left: 0.5rem;
+        }
+        .image-container {
+            position: relative;
+            max-width: 100%;
+            margin-top: 20px;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+        }
+        .overlay-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pizza Order Form</h1>
+        <form id="pizzaForm">
+            <div class="form-group">
+                <label for="size">Choose your pizza size</label>
+                <select class="form-control" id="size" required>
+                    <option value="" disabled selected>Select size</option>
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Choose your crust type</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="crust" id="thinCrust" value="Thin Crust" required>
+                    <label class="form-check-label" for="thinCrust">
+                        Thin Crust
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="crust" id="thickCrust" value="Thick Crust">
+                    <label class="form-check-label" for="thickCrust">
+                        Thick Crust
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="crust" id="Default" value="Default" required>
+                    <label class="form-check-label" for="Default">
+                        Default
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Choose your toppings</label>
+                <div class="form-check">
+                    <input class="form-check-input topping-checkbox" type="checkbox" value="Extra Cheese" id="extraCheese">
+                    <label class="form-check-label" for="extraCheese">
+                        Extra Cheese
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input topping-checkbox" type="checkbox" value="Tomato" id="tomato">
+                    <label class="form-check-label" for="tomato">
+                        Tomato
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input topping-checkbox" type="checkbox" value="Leaf" id="leaf">
+                    <label class="form-check-label" for="leaf">
+                        Leaf
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input topping-checkbox" type="checkbox" value="Pepperoni" id="pepperoni">
+                    <label class="form-check-label" for="pepperoni">
+                        Pepperoni
+                    </label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Location to deliver</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Location">
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Description of order</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="For example, no garlic..."></textarea>
+              </div>
+            <button type="submit" class="btn btn-primary">Submit Order</button>
+        </form>
+        <div id="orderResult" class="mt-4"></div>
+        <div class="image-container" id="pizzaImageContainer">
+            <img id="pizzaImage" src="https://th.bing.com/th/id/R.e46fc9eb94b0aa129af329da81526750?rik=Tfhmm%2fMlK0FnpQ&riu=http%3a%2f%2fclipartmag.com%2fimages%2fcheese-pizza-clipart-34.png&ehk=cEabJIXN%2b%2bJ%2bDbLHgdpYgr5unifETLjSpKSxqKWdYxE%3d&risl=&pid=ImgRaw&r=0" alt="Pizza Image">
+            <img class="overlay-image" id="extraCheeseOverlay" src="cheese-removebg-preview.png" alt="Cheese Image">
+            <img class="overlay-image" id="pepperoniOverlay" src="https://storage.pizzapizza.ca/phx2/ppl_images/topping_overlay/2x/UN.png" alt="Pepperoni Image">
+            <img class="overlay-image" id="tomatoOverlay" src="tomato.png" alt="Tomato Image">
+            <img class="overlay-image" id="leafOverlay" src="https://th.bing.com/th/id/R.67f184ef24a45f0ac5a96198b27aa707?rik=BOcZaicw%2b0d%2bYw&riu=http%3a%2f%2fwppizzatime.com%2fwp-content%2fplugins%2fpizzatime2%2fimages%2fspinach.png&ehk=WDJ7MWTLsUwf9Y04GLgAZUM8ea0YPy71rqi3V2R4ST0%3d&risl=&pid=ImgRaw&r=0" alt="Leaf Image">
+           
+        </div>
+    </div>
+   
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('pizzaForm');
+            const pizzaImage = document.getElementById('pizzaImage');
+            const overlays = {
+                "Pepperoni": document.getElementById('pepperoniOverlay'),
+                "Extra Cheese": document.getElementById('extraCheeseOverlay'),
+                "Tomato": document.getElementById('tomatoOverlay'),
+                "Leaf": document.getElementById('leafOverlay')
+                
+            };
+
+            // Update pizza image size based on selection
+            document.getElementById('size').addEventListener('change', function () {
+                switch (this.value) {
+                    case "Small":
+                        pizzaImage.style.width = "50%";
+                        leafOverlay.style.width ="50%";
+                        tomatoOverlay.style.width ="50%";
+                        extraCheeseOverlay.style.width ="50%";
+                        pepperoniOverlay.style.width ="50%";
+                        break;
+                    case "Medium":
+                        pizzaImage.style.width = "75%";
+                        leafOverlay.style.width ="75%";
+                        tomatoOverlay.style.width ="75%";
+                        extraCheeseOverlay.style.width ="75%";
+                        pepperoniOverlay.style.width ="75%";
+                        break;
+                    case "Large":
+                        pizzaImage.style.width = "100%";
+                        leafOverlay.style.width ="100%";
+                        tomatoOverlay.style.width ="100%";
+                        extraCheeseOverlay.style.width ="100%";
+                        pepperoniOverlay.style.width ="100%";
+                        break;
+                }
+            });
+
+            // Show or hide toppings based on checkbox changes
+            document.querySelectorAll('.topping-checkbox').forEach(function (checkbox) {
+                checkbox.addEventListener('change', function () {
+                    if (this.checked) {
+                        overlays[this.value].style.display = 'block';
+                    } else {
+                        overlays[this.value].style.display = 'none';
+                    }
+                });
+            });
+
+            form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    // Get selected pizza size
+    const size = document.getElementById('size').value;
+
+    // Get selected crust type
+    const crust = document.querySelector('input[name="crust"]:checked').value;
+
+    // Get selected toppings
+    const selectedToppings = [];
+    form.querySelectorAll('input[type="checkbox"]:checked').forEach(function (checkbox) {
+        selectedToppings.push(checkbox.value);
+    });
+
+    // Get location to deliver
+    const location = document.getElementById('exampleFormControlInput1').value;
+
+    // Get description of order
+    const description = document.getElementById('exampleFormControlTextarea1').value;
+
+    // Display the order summary
+    const orderResultDiv = document.getElementById('orderResult');
+    orderResultDiv.innerHTML = `
+        <h2>Your Order Summary</h2>
+        <p><strong>Size:</strong> ${size}</p>
+        <p><strong>Crust:</strong> ${crust}</p>
+        <p><strong>Toppings:</strong> ${selectedToppings.join(', ') || 'None'}</p>
+        <p><strong>Location to deliver:</strong> ${location}</p>
+        <p><strong>Description of order:</strong> ${description}</p>
+    `;
+
+    // Display the pizza image container
+    const pizzaImageContainer = document.getElementById('pizzaImageContainer');
+    pizzaImageContainer.style.display = 'block';
+});
+
+        });
+
+
+        // Update pizza image based on crust type
+document.querySelectorAll('input[name="crust"]').forEach(function (radio) {
+    radio.addEventListener('change', function () {
+        const selectedCrust = document.querySelector('input[name="crust"]:checked').value;
+        
+        // Adjust pizza image based on crust selection
+        switch (selectedCrust) {
+            case "Thin Crust":
+                pizzaImage.src = "https://media.istockphoto.com/id/1284103186/vector/cheese-pizza-icon-on-transparent-background.jpg?s=612x612&w=0&k=20&c=jNJE0u62bOPjV0dp08130nswj5BwYUmJzc5BdBzsMv8="; // Replace with the URL for Thin Crust pizza image
+                break;
+            case "Thick Crust":
+                pizzaImage.src = "https://roostersroost.com/wp-content/uploads/2021/01/bucket-frid-chicke.fw_.png"; // Replace with the URL for Thick Crust pizza image
+                break;
+            case "Default":
+                pizzaImage.src = "https://th.bing.com/th/id/R.e46fc9eb94b0aa129af329da81526750?rik=Tfhmm%2fMlK0FnpQ&riu=http%3a%2f%2fclipartmag.com%2fimages%2fcheese-pizza-clipart-34.png&ehk=cEabJIXN%2b%2bJ%2bDbLHgdpYgr5unifETLjSpKSxqKWdYxE%3d&risl=&pid=ImgRaw&r=0"; // Default image URL or handle other cases
+                break;
+        }
+    });
+});
+
+    </script>
+</body>
+</html>
